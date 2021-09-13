@@ -1,0 +1,156 @@
+{
+  "project_info": {
+    "project_number": "437330601796",
+    "firebase_url": "https://verge-ee493.firebaseio.com",
+    "project_id": "verge-ee493",
+    "storage_bucket": "verge-ee493.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437330601796:android:e1f1f6e826b2e13f309911",
+        "android_client_info": {
+          "package_name": "com.booking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437330601796-1q4a269mf1f72tm2m6uhsnhfu3ijs3ke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO1cMfWG4vsJPLJspvxhJCH54a2bJTSuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437330601796-1q4a269mf1f72tm2m6uhsnhfu3ijs3ke.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "437330601796-ejpeg42eil0tdcu0pph1vv73moansvma.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mobitk.demo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437330601796:android:b825abde3267142f",
+        "android_client_info": {
+          "package_name": "com.example.kareem.theverge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437330601796-1q4a269mf1f72tm2m6uhsnhfu3ijs3ke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO1cMfWG4vsJPLJspvxhJCH54a2bJTSuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437330601796-1q4a269mf1f72tm2m6uhsnhfu3ijs3ke.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "437330601796-ejpeg42eil0tdcu0pph1vv73moansvma.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mobitk.demo"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-1663473433594713~8686877159"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437330601796:android:7cbca500586ce805309911",
+        "android_client_info": {
+          "package_name": "com.mlkit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437330601796-1q4a269mf1f72tm2m6uhsnhfu3ijs3ke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO1cMfWG4vsJPLJspvxhJCH54a2bJTSuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437330601796-1q4a269mf1f72tm2m6uhsnhfu3ijs3ke.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "437330601796-ejpeg42eil0tdcu0pph1vv73moansvma.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mobitk.demo"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437330601796:android:b9b6526782f195ce309911",
+        "android_client_info": {
+          "package_name": "com.mobitk.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437330601796-1q4a269mf1f72tm2m6uhsnhfu3ijs3ke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO1cMfWG4vsJPLJspvxhJCH54a2bJTSuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437330601796-1q4a269mf1f72tm2m6uhsnhfu3ijs3ke.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "437330601796-ejpeg42eil0tdcu0pph1vv73moansvma.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mobitk.demo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
