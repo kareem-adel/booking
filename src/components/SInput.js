@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     height: 55,
-    flex: 1,
     flexDirection: "row",
     alignSelf: "center",
     borderRadius: 20,

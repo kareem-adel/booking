@@ -42,7 +42,7 @@ const RootNavigation = () => {
 
   return (
     <NavigationContainer
-      /*theme={{
+    /*theme={{
         ...DefaultTheme,
         colors: {
           ...DefaultTheme.colors,
@@ -52,7 +52,11 @@ const RootNavigation = () => {
     >
       {state.user !== null ? (
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ header: (props) => null }}
+          />
           <Stack.Screen name="Details" component={Details} />
           <Stack.Screen name="HotelBooking" component={HotelBooking} />
           <Stack.Screen name="Profile" component={Profile} />

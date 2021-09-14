@@ -1,17 +1,20 @@
 import React from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Login from "./Login";
 import Signup from "./Signup";
 import Icon from "../../../assets/icon.svg";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Tab = createMaterialTopTabNavigator();
 
 const AuthenticationMain = () => {
+  const { width, height } = useWindowDimensions();
   return (
-    <ScrollView contentContainerStyle={{flex: 1}}>
-      <View style={{flex: 1}}>
-
+    <ScrollView
+      contentContainerStyle={{ minHeight: Math.max(width, height) }}
+    >
+      <View style={{ flex: 1 }}>
         <Icon style={styles.icon} width={60} height={60}></Icon>
         <Tab.Navigator
           screenOptions={{
@@ -21,7 +24,11 @@ const AuthenticationMain = () => {
               fontWeight: "bold",
               fontSize: 16,
             },
-            tabBarStyle: { elevation: 0, height: 60, justifyContent: "center" },
+            tabBarStyle: {
+              elevation: 0,
+              height: 60,
+              justifyContent: "center",
+            },
           }}
         >
           <Tab.Screen
@@ -35,7 +42,7 @@ const AuthenticationMain = () => {
             options={{ tabBarLabel: "Sign Up" }}
           />
         </Tab.Navigator>
-        </View>
+      </View>
     </ScrollView>
   );
 };

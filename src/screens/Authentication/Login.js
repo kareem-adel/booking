@@ -58,7 +58,6 @@ const Login = () => {
       });
   };
   return (
-    <ScrollView contentContainerStyle={{ alignItems: "center" }}>
       <View style={{ flex: 1, marginLeft: 25, marginRight: 25 }}>
         <View style={{ height: 32 }}></View>
         <CText>Username or E-mail</CText>
@@ -138,7 +137,6 @@ const Login = () => {
           <CText style={styles.buttonText}>{`Login`}</CText>
         </TouchableOpacity>
       </View>
-    </ScrollView>
   );
 };
 

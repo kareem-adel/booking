@@ -44,7 +44,6 @@ const Signup = () => {
       });
   };
   return (
-    <ScrollView contentContainerStyle={{ alignItems: "center" }}>
       <View style={{ flex: 1, marginLeft: 25, marginRight: 25 }}>
         <View style={{ height: 32 }}></View>
         <CText>Username</CText>
@@ -142,7 +141,6 @@ const Signup = () => {
           <CText style={styles.buttonText}>{`Sign Up`}</CText>
         </TouchableOpacity>
       </View>
-    </ScrollView>
   );
 };
 

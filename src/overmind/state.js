@@ -8,6 +8,7 @@ import {
 export const state = {
   initializing: true,
   user: null,
+  location: null,
   login: {
     emailusername: "",
     emailusernameError: "",
@@ -37,4 +38,7 @@ export const state = {
       );
     }),
   },
+  recommend: [],
+  popular: [],
+  trending: [],
 };
