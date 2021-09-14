@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { StyleSheet } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { StyleSheet, Text } from "react-native";
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useActions, useState } from "../overmind";
 import Home from "../screens/Home";
@@ -24,7 +24,9 @@ const RootNavigation = () => {
 
   function onAuthStateChanged(user) {
     actions.setUser(user);
-    if (initializing) setInitializing(false);
+    if (initializing) {
+      setInitializing(false);
+    }
   }
 
   useEffect(() => {
@@ -32,25 +34,43 @@ const RootNavigation = () => {
     return subscriber;
   }, []);
 
+  console.log({ initializing, user: state.user });
+
   if (initializing) {
-    return <AppLoading />;
+    return <AppLoading autoHideSplash={true} />;
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      /*theme={{
+        ...DefaultTheme,
+        colors: {
+          ...DefaultTheme.colors,
+          background: "white",
+        },
+      }}*/
+    >
       {state.user !== null ? (
-        <>
+        <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Details" component={Details} />
           <Stack.Screen name="HotelBooking" component={HotelBooking} />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Bookings" component={Bookings} />
-        </>
+        </Stack.Navigator>
       ) : (
-        <>
-          <Stack.Screen name="Onboarding" component={Onboarding} />
-          <Stack.Screen name="Authentication" component={AuthenticationMain} />
-        </>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Onboarding"
+            component={Onboarding}
+            options={{ header: (props) => null }}
+          />
+          <Stack.Screen
+            name="AuthenticationMain"
+            component={AuthenticationMain}
+            options={{ header: (props) => null }}
+          />
+        </Stack.Navigator>
       )}
     </NavigationContainer>
   );

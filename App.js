@@ -1,18 +1,18 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, StatusBar } from "react-native";
 import { createOvermind } from "overmind";
 import { Provider } from "overmind-react";
-import { StatusBar } from "expo-status-bar";
 import RootNavigation from "./src/navigation/RootNavigation";
 import { config } from "./src/overmind";
+import { DefaultTheme } from "@react-navigation/native";
 
 const overmind = createOvermind(config);
 
 export default function App() {
   return (
     <Provider value={overmind}>
+      <StatusBar barStyle={"dark-content"} backgroundColor={DefaultTheme.colors.background} />
       <RootNavigation></RootNavigation>
-      <StatusBar style="auto" />
     </Provider>
   );
 }
