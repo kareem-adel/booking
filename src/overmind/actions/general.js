@@ -29,3 +29,6 @@ export const getHotelsTrending = async ({ state, effects, actions }) => {
     5000
   );
 };
+export const setDetails = async ({ state, effects, actions }, details) => {
+  state.details = details;
+};

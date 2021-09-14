@@ -41,4 +41,5 @@ export const state = {
   recommend: [],
   popular: [],
   trending: [],
+  details:{}
 };

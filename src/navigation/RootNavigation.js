@@ -57,7 +57,11 @@ const RootNavigation = () => {
             component={Home}
             options={{ header: (props) => null }}
           />
-          <Stack.Screen name="Details" component={Details} />
+          <Stack.Screen
+            name="Details"
+            component={Details}
+            options={{ header: (props) => null }}
+          />
           <Stack.Screen name="HotelBooking" component={HotelBooking} />
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Bookings" component={Bookings} />

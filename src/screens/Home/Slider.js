@@ -9,14 +9,20 @@ import {
 } from "react-native";
 import CText from "../../components/CText";
 import Star from "../../../assets/star.svg";
+import { useNavigation } from '@react-navigation/native';
+import { useActions, useState } from "../../overmind";
 
-const Slider = ({ navigation, fetchFeed, feed }) => {
+const Slider = ({ feed }) => {
   const { width } = useWindowDimensions();
+  const navigation = useNavigation();
+  const actions = useActions();
+  const state = useState();
 
-  const Item = ({ image, name, location, rating }) => {
+  const Item = ({ id, image, name, description, location, rating, reviews }) => {
     return (
       <TouchableOpacity
         onPress={() => {
+          actions.setDetails({ id, image, name, description, location, rating, reviews });
           navigation.navigate("Details");
         }}
       >
@@ -43,7 +49,7 @@ const Slider = ({ navigation, fetchFeed, feed }) => {
                 position: "absolute",
                 top: 20,
                 right: 20,
-                backgroundColor: "#3C3E3E3E",
+                backgroundColor: "rgba(62, 62, 62, 0.6)",
                 borderRadius: 25,
                 padding: 14,
                 paddingTop: 9,
