@@ -1,5 +1,6 @@
 import axios from "axios";
 import { baseUrl, mapsKey } from "../../Utils/Globals";
+import firestore from '@react-native-firebase/firestore';
 
 export default {
   endpoint: async () => {
@@ -30,4 +31,11 @@ export default {
       };
     });
   },
+  submitBooking: async (email, data) => {
+    return firestore().collection(email).add(data);
+  },
+  getBookings: async (email, data) => {
+    return firestore().collection(email).get();
+  },
+  
 };

@@ -1,0 +1,94 @@
+diff --git a/node_modules/react-native-calendar-picker/CalendarPicker/Day.js b/node_modules/react-native-calendar-picker/CalendarPicker/Day.js
+index 5331603..8f0f215 100644
+--- a/node_modules/react-native-calendar-picker/CalendarPicker/Day.js
++++ b/node_modules/react-native-calendar-picker/CalendarPicker/Day.js
+@@ -164,7 +164,7 @@ export default function Day(props) {
+         // Apply style for days inside of range, excluding start & end dates.
+         if (thisDay.isBetween(selectedStartDate, selectedEndDate, 'day', '()')) {
+           computedSelectedDayStyle = [styles.inRangeDay, selectedRangeStyle];
+-          selectedDayTextStyle = [styles.selectedDayLabel, propSelectedDayTextStyle];
++          selectedDayTextStyle = [styles.selectedDayLabel, propSelectedDayTextStyle, {color: "rgba(62, 62, 62, 1)"}];
+         }
+       }
+       // Apply style if start date has been selected but end date has not
+@@ -197,7 +197,9 @@ export default function Day(props) {
+       );
+     } else {
+       return (
+-        <View style={[styles.dayWrapper, custom.containerStyle]}>
++        <View style={[styles.dayWrapper, custom.containerStyle, {overflow: "hidden"}]}>
++          {(!!selectedStartDate && !!selectedEndDate) && isThisDaySameAsSelectedStart && <View style={{left:"50%",width:"100%",height:"80%",backgroundColor:"rgba(0, 167, 110, 0.2)",position:"absolute"}}></View>}
++          {(!!selectedStartDate && !!selectedEndDate) && isThisDaySameAsSelectedEnd && <View style={{right:"50%",width:"100%",height:"80%",backgroundColor:"rgba(0, 167, 110, 0.2)",position:"absolute"}}></View>}          
+           <TouchableOpacity
+             disabled={!enableDateChange}
+             style={[custom.style, computedSelectedDayStyle, selectedDayStyle ]}
+diff --git a/node_modules/react-native-calendar-picker/CalendarPicker/HeaderControls.js b/node_modules/react-native-calendar-picker/CalendarPicker/HeaderControls.js
+index 611bc82..38e1b72 100644
+--- a/node_modules/react-native-calendar-picker/CalendarPicker/HeaderControls.js
++++ b/node_modules/react-native-calendar-picker/CalendarPicker/HeaderControls.js
+@@ -33,7 +33,8 @@ export default function HeaderControls(props) {
+     minDate,
+     headingLevel,
+     monthYearHeaderWrapperStyle,
+-    headerWrapperStyle
++    headerWrapperStyle,
++    customComponent
+   } = props;
+   const MONTHS = months || Utils.MONTHS; // English Month Array
+   const monthName = MONTHS[currentMonth];
+@@ -48,15 +49,7 @@ export default function HeaderControls(props) {
+   }
+ 
+   return (
+-    <View style={[styles.headerWrapper, headerWrapperStyle]}>
+-      <Controls
+-        disabled={disablePreviousMonth}
+-        label={previousTitle}
+-        component={previousComponent}
+-        onPressControl={onPressPrevious}
+-        styles={styles.previousContainer}
+-        textStyles={[styles.navButtonText, textStyle, previousTitleStyle]}
+-      />
++    <View style={[styles.headerWrapper, headerWrapperStyle, {marginLeft: 25}]}>
+       <View style={[styles.monthYearHeaderWrapper,monthYearHeaderWrapperStyle]}>
+         <TouchableOpacity onPress={onPressMonth}>
+           <Text style={[styles.monthHeaderMainText, textStyle, monthTitleStyle]} {...accessibilityProps}>
+@@ -68,15 +61,10 @@ export default function HeaderControls(props) {
+             { year }
+           </Text>
+         </TouchableOpacity>
++        <TouchableOpacity onPress={onPressYear}>
++            {customComponent}
++        </TouchableOpacity>
+       </View>
+-      <Controls
+-        disabled={disableNextMonth}
+-        label={nextTitle}
+-        component={nextComponent}
+-        onPressControl={onPressNext}
+-        styles={styles.nextContainer}
+-        textStyles={[styles.navButtonText, textStyle, nextTitleStyle]}
+-      />
+     </View>
+   );
+ }
+diff --git a/node_modules/react-native-calendar-picker/CalendarPicker/index.js b/node_modules/react-native-calendar-picker/CalendarPicker/index.js
+index 62ba477..bea8ce5 100644
+--- a/node_modules/react-native-calendar-picker/CalendarPicker/index.js
++++ b/node_modules/react-native-calendar-picker/CalendarPicker/index.js
+@@ -484,6 +484,7 @@ export default class CalendarPicker extends Component {
+       onMonthChange,
+       scrollable,
+       horizontal,
++      customComponent
+     } = this.props;
+ 
+     let content;
+@@ -554,6 +555,7 @@ export default class CalendarPicker extends Component {
+             headingLevel={headingLevel}
+             monthYearHeaderWrapperStyle={monthYearHeaderWrapperStyle}
+             headerWrapperStyle={headerWrapperStyle}
++            customComponent={customComponent}
+           />
+           <Weekdays
+             styles={styles}

@@ -5,6 +5,7 @@ import { Provider } from "overmind-react";
 import RootNavigation from "./src/navigation/RootNavigation";
 import { config } from "./src/overmind";
 import { DefaultTheme } from "@react-navigation/native";
+import { ModalPortal } from 'react-native-modals';
 
 const overmind = createOvermind(config);
 
@@ -13,6 +14,7 @@ export default function App() {
     <Provider value={overmind}>
       <StatusBar barStyle={"dark-content"} backgroundColor={DefaultTheme.colors.background} />
       <RootNavigation></RootNavigation>
+      <ModalPortal />
     </Provider>
   );
 }

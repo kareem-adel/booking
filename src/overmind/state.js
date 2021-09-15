@@ -41,5 +41,14 @@ export const state = {
   recommend: [],
   popular: [],
   trending: [],
-  details:{}
+  details: {},
+  bookModal: {
+    mode: "booking",
+    visible: false,
+    checkIn: "",
+    checkOut: "",
+    continueButtonEnabled: derived((state, rootState) => {
+      return state.checkIn !== "" && state.checkOut !== "";
+    }),
+  },
 };
