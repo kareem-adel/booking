@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+  TouchableOpacity,
+} from "react-native";
 import * as Location from "expo-location";
 import { useActions, useState } from "../overmind";
 import { LocationAccuracy } from "expo-location";
@@ -12,12 +18,14 @@ import { DefaultTheme } from "@react-navigation/native";
 import Recommend from "./Home/Recommend";
 import Award from "../../assets/award.svg";
 import Popular from "./Home/Popular";
+import { useNavigation } from "@react-navigation/native";
 
 const Tab = createMaterialTopTabNavigator();
 const Home = () => {
   const { width, height } = useWindowDimensions();
   const actions = useActions();
   const state = useState();
+  const navigation = useNavigation();
 
   useEffect(() => {
     (async () => {
@@ -35,16 +43,20 @@ const Home = () => {
   }, []);
   return (
     <ScrollView contentContainerStyle={{ minHeight: Math.max(width, height) }}>
-      <Award
-        style={{
-          position: "absolute",
-          width: 24,
-          height: 24,
-          color: "#A9A9A9",
-          right: 27,
-          top: 32,
+      <TouchableOpacity
+        style={{ padding: 8, position: "absolute", right: 27, top: 32 }}
+        onPress={() => {
+          navigation.navigate("Profile");
         }}
-      ></Award>
+      >
+        <Award
+          style={{
+            width: 24,
+            height: 24,
+            color: "#A9A9A9",
+          }}
+        ></Award>
+      </TouchableOpacity>
       <View style={{ flex: 1 }}>
         <View
           style={{
@@ -55,7 +67,7 @@ const Home = () => {
           }}
         >
           <CText style={styles.greetingTitle}>{`Good Morning,`}</CText>
-          <CText style={styles.greetingTitle}>{`${state.user.email}!`}</CText>
+          <CText style={styles.greetingTitle}>{`${state.user?.email}!`}</CText>
         </View>
 
         <Tab.Navigator

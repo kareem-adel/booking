@@ -14,13 +14,14 @@ const Login = () => {
     if (email.indexOf("@") < 0) {
       email += "@mail.com";
     }
-    return actions.login({email, password});
+    return actions.login({ email, password });
   };
   return (
     <View style={{ flex: 1, marginLeft: 25, marginRight: 25 }}>
       <View style={{ height: 32 }}></View>
       <CText>Username or E-mail</CText>
       <SInput
+        //autoFocus={true}
         validation={(input) => {
           actions.setLoginEmailusernameError(usernameValidation(input));
         }}

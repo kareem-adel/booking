@@ -33,6 +33,7 @@ const Signup = () => {
       <View style={{ height: 32 }}></View>
       <CText>Username</CText>
       <SInput
+        //autoFocus={true}
         validation={(input) => {
           actions.setSignupUsernameError(usernameValidation(input));
         }}

@@ -5,7 +5,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { useActions, useState } from "../overmind";
 import Home from "../screens/Home";
 import Details from "../screens/Details";
-import HotelBooking from "../screens/HotelBooking";
 import Profile from "../screens/Profile";
 import Bookings from "../screens/Bookings";
 import Onboarding from "../screens/Onboarding";
@@ -62,9 +61,16 @@ const RootNavigation = () => {
             component={Details}
             options={{ header: (props) => null }}
           />
-          <Stack.Screen name="HotelBooking" component={HotelBooking} />
-          <Stack.Screen name="Profile" component={Profile} />
-          <Stack.Screen name="Bookings" component={Bookings} />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
+            options={{ header: (props) => null }}
+          />
+          <Stack.Screen
+            name="Bookings"
+            component={Bookings}
+            options={{ header: (props) => null }}
+          />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator initialRouteName="Home">

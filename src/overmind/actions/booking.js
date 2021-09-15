@@ -18,7 +18,7 @@ export const setCheckOut = async ({ state, effects, actions }, checkOut) => {
 
 export const submitBooking = async ({ state, effects, actions }) => {
   return effects.api
-    .submitBooking(state.user.email, {
+    .submitBooking(state.user?.email, {
       ...state.details,
       checkIn: state.bookModal.checkIn,
       checkOut: state.bookModal.checkOut,

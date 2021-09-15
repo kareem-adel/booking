@@ -91,4 +91,7 @@ export default {
         return error;
       });
   },
+  signOut: async () => {
+    return auth().signOut();
+  },
 };
