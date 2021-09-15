@@ -1,3 +1,6 @@
+export const login = async ({ state, effects, actions }, {email, password}) => {
+  return effects.api.login(email, password);
+};
 export const setLoginEmailusernameError = async (
   { state, effects, actions },
   emailusernameError

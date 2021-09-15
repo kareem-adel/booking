@@ -1,15 +1,9 @@
 import axios from "axios";
 import { baseUrl, mapsKey } from "../../Utils/Globals";
-import firestore from '@react-native-firebase/firestore';
+import firestore from "@react-native-firebase/firestore";
+import auth from "@react-native-firebase/auth";
 
 export default {
-  endpoint: async () => {
-    const ret = await axios({
-      url: `${baseUrl}/endpoint?param=1`,
-      method: "get",
-    });
-    return ret.data;
-  },
   getHotels: async (latitude, longitude, type, radius = 1500) => {
     const ret = await axios({
       url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C${longitude}&radius=${radius}&type=${type}&keyword=hotel&key=${mapsKey}`,
@@ -37,5 +31,64 @@ export default {
   getBookings: async (email, data) => {
     return firestore().collection(email).get();
   },
-  
+
+  login: async (email, password) => {
+    return auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log("User account created & signed in!");
+        return "";
+      })
+      .catch((error) => {
+        if (error.code === "auth/invalid-email") {
+          console.log("That email address is invalid!");
+          //return "auth/invalid-email";
+          return "That email address is invalid!";
+        }
+
+        if (error.code === "auth/user-not-found") {
+          console.log("User was not found!");
+          //return "auth/user-not-found";
+          return "User was not found!";
+        }
+
+        if (error.code === "auth/user-disabled") {
+          console.log("User account is disabled!");
+          //return "auth/user-disabled";
+          return "User account is disabled!";
+        }
+
+        if (error.code === "auth/wrong-password") {
+          console.log("Wrong password!");
+          //return "auth/wrong-password";
+          return "Wrong password!";
+        }
+
+        console.error(error);
+        return error;
+      });
+  },
+
+  signup: async (email, password) => {
+    return auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log("User account created & signed in!");
+        return "";
+      })
+      .catch((error) => {
+        if (error.code === "auth/email-already-in-use") {
+          console.log("That email address is already in use!");
+          return "That email address is already in use!";
+        }
+
+        if (error.code === "auth/invalid-email") {
+          console.log("That email address is invalid!");
+          return "That email address is invalid!";
+        }
+
+        console.error(error);
+        return error;
+      });
+  },
 };

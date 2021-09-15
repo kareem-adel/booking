@@ -1,3 +1,6 @@
+export const signup = async ({ state, effects, actions }, {email, password}) => {
+  return effects.api.signup(email, password);
+};
 export const setSignupUsernameError = async (
   { state, effects, actions },
   usernameError
