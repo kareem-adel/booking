@@ -33,8 +33,6 @@ const RootNavigation = () => {
     return subscriber;
   }, []);
 
-  console.log({ initializing, user: state.user });
-
   if (initializing) {
     return <AppLoading autoHideSplash={true} />;
   }

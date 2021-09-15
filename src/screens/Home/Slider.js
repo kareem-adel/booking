@@ -13,7 +13,7 @@ import Star from "../../../assets/star.svg";
 import { useNavigation } from "@react-navigation/native";
 import { useActions, useState } from "../../overmind";
 
-const Slider = ({ feed, loading }) => {
+const Slider = ({ feed, loading, requestNextSet }) => {
   const { width } = useWindowDimensions();
   const navigation = useNavigation();
   const actions = useActions();
@@ -21,6 +21,7 @@ const Slider = ({ feed, loading }) => {
 
   const Item = ({
     id,
+    place_id,
     image,
     name,
     description,
@@ -33,6 +34,7 @@ const Slider = ({ feed, loading }) => {
         onPress={() => {
           actions.setDetails({
             id,
+            place_id,
             image,
             name,
             description,
@@ -128,6 +130,9 @@ const Slider = ({ feed, loading }) => {
   return (
     <View style={{ flex: 1, marginTop: 40, marginBottom: 40 }}>
       <FlatList
+        onEndReached={() => {
+          !!requestNextSet && !loading && requestNextSet();
+        }}
         data={feed}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}

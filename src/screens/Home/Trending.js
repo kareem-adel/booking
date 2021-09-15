@@ -7,11 +7,16 @@ const Trending = ({ navigation }) => {
   const actions = useActions();
   const state = useState();
   useEffect(() => {
-    !!state.location &&
-      actions.getHotelsTrending();
+    !!state.location && actions.getHotelsTrending();
     return () => {};
   }, [state.location]);
-  return <Slider feed={state.trending} loading={state.trendingLoading}></Slider>;
+  return (
+    <Slider
+      feed={state.trending}
+      loading={state.trendingLoading}
+      requestNextSet={actions.getHotelsTrending}
+    ></Slider>
+  );
 };
 
 export default Trending;

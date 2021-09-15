@@ -29,6 +29,7 @@ const Bookings = () => {
   const renderItem = ({
     item: {
       id,
+      place_id,
       checkIn,
       checkOut,
       description,
@@ -39,17 +40,6 @@ const Bookings = () => {
       reviews,
     },
   }) => {
-    console.log({
-      id,
-      checkIn,
-      checkOut,
-      description,
-      image,
-      location,
-      name,
-      rating,
-      reviews,
-    });
     checkIn = moment(checkIn, "DD-MM-YYYY").format("DD/MM/YYYY");
     checkOut = moment(checkOut, "DD-MM-YYYY").format("DD/MM/YYYY");
     return (

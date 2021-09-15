@@ -7,11 +7,16 @@ const Popular = ({ navigation }) => {
   const actions = useActions();
   const state = useState();
   useEffect(() => {
-    !!state.location &&
-      actions.getHotelsPopular();
+    !!state.location && actions.getHotelsPopular();
     return () => {};
   }, [state.location]);
-  return <Slider feed={state.popular} loading={state.popularLoading}></Slider>;
+  return (
+    <Slider
+      feed={state.popular}
+      loading={state.popularLoading}
+      requestNextSet={actions.getHotelsPopular}
+    ></Slider>
+  );
 };
 
 export default Popular;

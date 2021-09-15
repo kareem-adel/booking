@@ -7,11 +7,16 @@ const Recommend = ({ navigation }) => {
   const actions = useActions();
   const state = useState();
   useEffect(() => {
-    !!state.location &&
-      actions.getHotelsRecommend();
+    !!state.location && actions.getHotelsRecommend();
     return () => {};
   }, [state.location]);
-  return <Slider feed={state.recommend} loading={state.recommendLoading}></Slider>;
+  return (
+    <Slider
+      feed={state.recommend}
+      loading={state.recommendLoading}
+      requestNextSet={actions.getHotelsRecommend}
+    ></Slider>
+  );
 };
 
 export default Recommend;

@@ -41,7 +41,7 @@ const Details = () => {
     return () => backHandler.remove();
   }, []);
 
-  const { id, image, name, description, location, rating, reviews } =
+  const { id, place_id, image, name, description, location, rating, reviews } =
     state.details;
 
   return (

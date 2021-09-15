@@ -41,10 +41,13 @@ export const state = {
     loading: false,
   },
   recommend: [],
+  recommendNextToken: "init",
   recommendLoading: false,
   popular: [],
+  popularNextToken: "init",
   popularLoading: false,
   trending: [],
+  trendingNextToken: "init",
   trendingLoading: false,
   details: {},
   bookModal: {

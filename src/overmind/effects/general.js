@@ -1,29 +1,44 @@
+import 'react-native-get-random-values';
 import axios from "axios";
 import { baseUrl, mapsKey } from "../../Utils/Globals";
 import firestore from "@react-native-firebase/firestore";
 import auth from "@react-native-firebase/auth";
+import { v4 as uuidv4 } from "uuid";
 
 export default {
-  getHotels: async (latitude, longitude, type, radius = 1500) => {
+  getHotels: async (latitude, longitude, type, nextToken, radius = 1500) => {
+    if (nextToken == null) {
+      return {
+        nextToken: null,
+        hotels: [],
+      };
+    }
+    const url =
+      nextToken === "init"
+        ? `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C${longitude}&radius=${radius}&type=${type}&keyword=hotel&key=${mapsKey}`
+        : `https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=${nextToken}&key=${mapsKey}`;
     const ret = await axios({
-      url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude}%2C${longitude}&radius=${radius}&type=${type}&keyword=hotel&key=${mapsKey}`,
-
+      url,
       method: "get",
     });
 
-    return ret.data?.results?.map((item) => {
-      return {
-        id: `${item.place_id}`,
-        name: `${item.name}`,
-        description: `${item.name} is high rated hotels, we are always maintaning the quality for better rating and high attitude service for you.\n\n\n${item.name} located in a strategic location. The hotel located in the middle of the city so you can enjoy the city and see something nearby.\n\n\nYou will be welcomed amongst olive trees, citron trees and magnolias, in gardens that hide exotic plants and in a wonderful outdoor pool with deck chairs.`,
-        location: `${item.vicinity}`,
-        rating: `${item.rating}`,
-        reviews: `${item.user_ratings_total}`,
-        image:
-          item.photos?.length > 0 &&
-          `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1500&photo_reference=${item.photos[0].photo_reference}&key=${mapsKey}`,
-      };
-    });
+    return {
+      nextToken: ret.data?.next_page_token,
+      hotels: ret.data?.results?.map((item) => {
+        return {
+          id: `${uuidv4()}`,
+          place_id: `${item.place_id}`,
+          name: `${item.name}`,
+          description: `${item.name} is high rated hotels, we are always maintaning the quality for better rating and high attitude service for you.\n\n\n${item.name} located in a strategic location. The hotel located in the middle of the city so you can enjoy the city and see something nearby.\n\n\nYou will be welcomed amongst olive trees, citron trees and magnolias, in gardens that hide exotic plants and in a wonderful outdoor pool with deck chairs.`,
+          location: `${item.vicinity}`,
+          rating: `${item.rating}`,
+          reviews: `${item.user_ratings_total}`,
+          image:
+            item.photos?.length > 0 &&
+            `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1500&photo_reference=${item.photos[0].photo_reference}&key=${mapsKey}`,
+        };
+      }),
+    };
   },
   submitBooking: async (email, data) => {
     return firestore().collection(email).add(data);
