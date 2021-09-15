@@ -5,14 +5,13 @@ import {
   View,
   useWindowDimensions,
   TouchableOpacity,
+  ScrollView
 } from "react-native";
 import * as Location from "expo-location";
 import { useActions, useState } from "../overmind";
 import { LocationAccuracy } from "expo-location";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { ScrollView } from "react-native-gesture-handler";
 import CText from "../components/CText";
-import Recommended from "./Home/Recommend";
 import Trending from "./Home/Trending";
 import { DefaultTheme } from "@react-navigation/native";
 import Recommend from "./Home/Recommend";
