@@ -78,13 +78,6 @@ const Login = () => {
           login(state.login.emailusername, state.login.password).then(
             (ret) => {
               console.log({ ret });
-              if (ret !== "") {
-                Alert.alert("Login error", ret, [
-                  {
-                    text: "ok",
-                  },
-                ]);
-              }
             },
             (error) => {
               console.log({ error });

@@ -40,6 +40,7 @@ const Slider = ({ feed }) => {
               height: "100%",
               alignSelf: "center",
               borderRadius: 50,
+              backgroundColor: "grey",
             }}
             resizeMode={"cover"}
             source={{ uri: image }}

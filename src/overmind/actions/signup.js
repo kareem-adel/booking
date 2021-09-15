@@ -1,5 +1,22 @@
+import Toast from "react-native-toast-message";
+
 export const signup = async ({ state, effects, actions }, {email, password}) => {
-  return effects.api.signup(email, password);
+  state.signup.loading = true;
+  const ret = await effects.api.signup(email, password);
+  state.signup.loading = false;
+  if (ret === "") {
+    Toast.show({
+      type: "success",
+      text1: "Welcome back",
+      visibilityTime: 4000,
+    });
+  } else {
+    Toast.show({
+      type: "error",
+      text1: ret,
+    });
+  }
+  return ret;
 };
 export const setSignupUsernameError = async (
   { state, effects, actions },

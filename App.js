@@ -6,6 +6,7 @@ import RootNavigation from "./src/navigation/RootNavigation";
 import { config } from "./src/overmind";
 import { DefaultTheme } from "@react-navigation/native";
 import { ModalPortal } from 'react-native-modals';
+import Toast from 'react-native-toast-message';
 
 const overmind = createOvermind(config);
 
@@ -15,6 +16,7 @@ export default function App() {
       <StatusBar barStyle={"dark-content"} backgroundColor={DefaultTheme.colors.background} />
       <RootNavigation></RootNavigation>
       <ModalPortal />
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </Provider>
   );
 }

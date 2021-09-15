@@ -1,5 +1,25 @@
-export const login = async ({ state, effects, actions }, {email, password}) => {
-  return effects.api.login(email, password);
+import Toast from "react-native-toast-message";
+
+export const login = async (
+  { state, effects, actions },
+  { email, password }
+) => {
+  state.login.loading = true;
+  const ret = await effects.api.login(email, password);
+  state.login.loading = false;
+  if (ret === "") {
+    Toast.show({
+      type: "success",
+      text1: "Welcome back",
+      visibilityTime: 4000,
+    });
+  } else {
+    Toast.show({
+      type: "error",
+      text1: ret,
+    });
+  }
+  return ret;
 };
 export const setLoginEmailusernameError = async (
   { state, effects, actions },

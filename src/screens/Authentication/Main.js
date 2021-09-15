@@ -1,10 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { StyleSheet, Text, View, useWindowDimensions, ScrollView } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Login from "./Login";
 import Signup from "./Signup";
 import Icon from "../../../assets/icon.svg";
-import { ScrollView } from "react-native-gesture-handler";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -18,6 +17,7 @@ const AuthenticationMain = () => {
         <Icon style={styles.icon} width={60} height={60}></Icon>
         <Tab.Navigator
           screenOptions={{
+            swipeEnabled: false,
             tabBarIndicatorStyle: { backgroundColor: "#00A76E", height: 3 },
             tabBarLabelStyle: {
               textTransform: "none",

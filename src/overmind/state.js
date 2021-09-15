@@ -21,6 +21,7 @@ export const state = {
         passwordValidation(state.password) === ""
       );
     }),
+    loading: false,
   },
   signup: {
     username: "",
@@ -37,10 +38,14 @@ export const state = {
         passwordValidation(state.password) === ""
       );
     }),
+    loading: false,
   },
   recommend: [],
+  recommendLoading: false,
   popular: [],
+  popularLoading: false,
   trending: [],
+  trendingLoading: false,
   details: {},
   bookModal: {
     mode: "booking",
@@ -50,6 +55,8 @@ export const state = {
     continueButtonEnabled: derived((state, rootState) => {
       return state.checkIn !== "" && state.checkOut !== "";
     }),
+    loading: false,
   },
-  myBookings:[]
+  myBookings:[],
+  myBookingsLoading: false,
 };
