@@ -29,16 +29,24 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        console.log("Permission to access location was denied");
-        return;
-      }
+      try {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== "granted") {
+          console.log("Permission to access location was denied");
+          return;
+        }
 
-      let location = await Location.getCurrentPositionAsync({
-        accuracy: LocationAccuracy.Lowest,
-      });
-      actions.setLocation(location);
+        let location = await Location.getCurrentPositionAsync({
+          accuracy: LocationAccuracy.Balanced,
+        });
+        actions.setLocation(location);
+      } catch (error) {
+        console.log({error})
+        //fallback
+        actions.setLocation({
+          coords: { latitude: "30.044402", longitude: "31.235749" },
+        });
+      }
     })();
   }, []);
   return (

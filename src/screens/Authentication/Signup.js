@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import auth from "@react-native-firebase/auth";
 import CText from "../../components/CText";
@@ -99,24 +100,18 @@ const Signup = () => {
       <View style={{ height: 30 }}></View>
 
       <TouchableOpacity
-        disabled={!state.signup.signupButtonEnabled}
+        disabled={!state.signup.signupButtonEnabled || state.signup.loading}
         style={{
           ...styles.button,
-          backgroundColor: state.signup.signupButtonEnabled
-            ? "#00A76E"
-            : "grey",
+          backgroundColor:
+            state.signup.signupButtonEnabled && !state.signup.loading
+              ? "#00A76E"
+              : "grey",
         }}
         onPress={() => {
           signup(state.signup.email, state.signup.password).then(
             (ret) => {
               console.log({ ret });
-              if (ret !== "") {
-                Alert.alert("Login error", ret, [
-                  {
-                    text: "ok",
-                  },
-                ]);
-              }
             },
             (error) => {
               console.log({ error });
@@ -124,7 +119,12 @@ const Signup = () => {
           );
         }}
       >
-        <CText style={styles.buttonText}>{`Sign Up`}</CText>
+        {state.signup.loading && (
+          <ActivityIndicator size="small" color="#FFFFFF" />
+        )}
+        {!state.signup.loading && (
+          <CText style={styles.buttonText}>{`Sign Up`}</CText>
+        )}
       </TouchableOpacity>
     </View>
   );

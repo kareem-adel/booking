@@ -1,5 +1,10 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity, Alert } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 
 import CText from "../../components/CText";
 import SInput from "../../components/SInput";
@@ -69,10 +74,13 @@ const Login = () => {
         <CText>Forgot Password?</CText>
       </TouchableOpacity>
       <TouchableOpacity
-        disabled={!state.login.loginButtonEnabled}
+        disabled={!state.login.loginButtonEnabled || state.login.loading}
         style={{
           ...styles.button,
-          backgroundColor: state.login.loginButtonEnabled ? "#00A76E" : "grey",
+          backgroundColor:
+            state.login.loginButtonEnabled && !state.login.loading
+              ? "#00A76E"
+              : "grey",
         }}
         onPress={() => {
           login(state.login.emailusername, state.login.password).then(
@@ -85,7 +93,12 @@ const Login = () => {
           );
         }}
       >
-        <CText style={styles.buttonText}>{`Login`}</CText>
+        {state.login.loading && (
+          <ActivityIndicator size="small" color="#FFFFFF" />
+        )}
+        {!state.login.loading && (
+          <CText style={styles.buttonText}>{`Login`}</CText>
+        )}
       </TouchableOpacity>
     </View>
   );

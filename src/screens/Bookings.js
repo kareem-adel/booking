@@ -55,7 +55,8 @@ const Bookings = () => {
     return (
       <View
         style={{
-          marginLeft: 25, marginRight: 25,
+          marginLeft: 25,
+          marginRight: 25,
           flexDirection: "row",
           flex: 1,
           marginTop: 3,
@@ -125,11 +126,12 @@ const Bookings = () => {
     <View style={{ flex: 1 }}>
       <View
         style={{
-          marginLeft: 27, marginRight: 27,
+          marginLeft: 27,
+          marginRight: 27,
           flexDirection: "row",
           alignItems: "center",
           marginTop: 33,
-          marginBottom: 27
+          marginBottom: 27,
         }}
       >
         <TouchableOpacity
@@ -158,6 +160,10 @@ const Bookings = () => {
         </CText>
       </View>
       <FlatList
+        onRefresh={() => {
+          actions.getBookings();
+        }}
+        refreshing={state.myBookingsLoading}
         data={state.myBookings}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}

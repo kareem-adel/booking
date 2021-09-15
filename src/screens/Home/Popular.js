@@ -11,7 +11,7 @@ const Popular = ({ navigation }) => {
       actions.getHotelsPopular();
     return () => {};
   }, [state.location]);
-  return <Slider feed={state.popular}></Slider>;
+  return <Slider feed={state.popular} loading={state.popularLoading}></Slider>;
 };
 
 export default Popular;

@@ -6,23 +6,40 @@ import {
   ImageBackground,
   useWindowDimensions,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import CText from "../../components/CText";
 import Star from "../../../assets/star.svg";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 import { useActions, useState } from "../../overmind";
 
-const Slider = ({ feed }) => {
+const Slider = ({ feed, loading }) => {
   const { width } = useWindowDimensions();
   const navigation = useNavigation();
   const actions = useActions();
   const state = useState();
 
-  const Item = ({ id, image, name, description, location, rating, reviews }) => {
+  const Item = ({
+    id,
+    image,
+    name,
+    description,
+    location,
+    rating,
+    reviews,
+  }) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          actions.setDetails({ id, image, name, description, location, rating, reviews });
+          actions.setDetails({
+            id,
+            image,
+            name,
+            description,
+            location,
+            rating,
+            reviews,
+          });
           navigation.navigate("Details");
         }}
       >
@@ -118,6 +135,21 @@ const Slider = ({ feed }) => {
         showsHorizontalScrollIndicator={false}
         ListFooterComponent={() => <View style={{ width: 25 }}></View>}
       />
+      {loading && (
+        <View
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )}
     </View>
   );
 };

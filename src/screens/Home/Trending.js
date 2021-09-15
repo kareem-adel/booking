@@ -11,7 +11,7 @@ const Trending = ({ navigation }) => {
       actions.getHotelsTrending();
     return () => {};
   }, [state.location]);
-  return <Slider feed={state.trending}></Slider>;
+  return <Slider feed={state.trending} loading={state.trendingLoading}></Slider>;
 };
 
 export default Trending;

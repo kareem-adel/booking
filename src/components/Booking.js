@@ -4,6 +4,7 @@ import {
   View,
   useWindowDimensions,
   TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import { useActions, useState } from "../overmind";
 import CText from "../components/CText";
@@ -12,12 +13,11 @@ import Down from "../../assets/down.svg";
 import Arrowright from "../../assets/arrowright.svg";
 import moment from "moment";
 
-
 const Booking = () => {
-    const bottomSheetRef = useRef(null);
-    const { width } = useWindowDimensions();
-    const actions = useActions();
-    const state = useState();
+  const bottomSheetRef = useRef(null);
+  const { width } = useWindowDimensions();
+  const actions = useActions();
+  const state = useState();
   return (
     <>
       <CalendarPicker
@@ -153,18 +153,26 @@ const Booking = () => {
       </View>
 
       <TouchableOpacity
-        disabled={!state.bookModal.continueButtonEnabled}
+        disabled={
+          !state.bookModal.continueButtonEnabled || state.bookModal.loading
+        }
         style={{
           ...styles.button,
-          backgroundColor: state.bookModal.continueButtonEnabled
-            ? "#00A76E"
-            : "grey",
+          backgroundColor:
+            state.bookModal.continueButtonEnabled && !state.bookModal.loading
+              ? "#00A76E"
+              : "grey",
         }}
         onPress={() => {
           actions.submitBooking();
         }}
       >
-        <CText style={styles.buttonText}>{`Continue`}</CText>
+        {state.bookModal.loading && (
+          <ActivityIndicator size="small" color="#FFFFFF" />
+        )}
+        {!state.bookModal.loading && (
+          <CText style={styles.buttonText}>{`Continue`}</CText>
+        )}
       </TouchableOpacity>
     </>
   );
@@ -173,21 +181,21 @@ const Booking = () => {
 export default Booking;
 
 const styles = StyleSheet.create({
-    button: {
-      width: "100%",
-      marginTop: 77,
-      backgroundColor: "#00A76E",
-      padding: 16,
-      paddingLeft: 50,
-      paddingRight: 50,
-      borderRadius: 25,
-      fontSize: 18,
-      alignSelf: "center",
-      marginBottom: 16,
-    },
-    buttonText: {
-      alignSelf: "center",
-      color: "white",
-      fontWeight: "700",
-    },
-  });
+  button: {
+    width: "100%",
+    marginTop: 77,
+    backgroundColor: "#00A76E",
+    padding: 16,
+    paddingLeft: 50,
+    paddingRight: 50,
+    borderRadius: 25,
+    fontSize: 18,
+    alignSelf: "center",
+    marginBottom: 16,
+  },
+  buttonText: {
+    alignSelf: "center",
+    color: "white",
+    fontWeight: "700",
+  },
+});

@@ -11,7 +11,7 @@ const Recommend = ({ navigation }) => {
       actions.getHotelsRecommend();
     return () => {};
   }, [state.location]);
-  return <Slider feed={state.recommend}></Slider>;
+  return <Slider feed={state.recommend} loading={state.recommendLoading}></Slider>;
 };
 
 export default Recommend;
