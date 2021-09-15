@@ -5,7 +5,7 @@ import {
   View,
   useWindowDimensions,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import * as Location from "expo-location";
 import { useActions, useState } from "../overmind";
@@ -40,7 +40,7 @@ const Home = () => {
         });
         actions.setLocation(location);
       } catch (error) {
-        console.log({error})
+        console.log({ error });
         //fallback
         actions.setLocation({
           coords: { latitude: "30.044402", longitude: "31.235749" },
@@ -50,21 +50,21 @@ const Home = () => {
   }, []);
   return (
     <ScrollView contentContainerStyle={{ minHeight: Math.max(width, height) }}>
-      <TouchableOpacity
-        style={{ padding: 8, position: "absolute", right: 27, top: 32 }}
-        onPress={() => {
-          navigation.navigate("Profile");
-        }}
-      >
-        <Award
-          style={{
-            width: 24,
-            height: 24,
-            color: "#A9A9A9",
-          }}
-        ></Award>
-      </TouchableOpacity>
       <View style={{ flex: 1 }}>
+        <TouchableOpacity
+          style={{ padding: 8, position: "absolute", right: 27, top: 32 }}
+          onPress={() => {
+            navigation.navigate("Profile");
+          }}
+        >
+          <Award
+            style={{
+              width: 24,
+              height: 24,
+              color: "#A9A9A9",
+            }}
+          ></Award>
+        </TouchableOpacity>
         <View
           style={{
             marginLeft: 25,
