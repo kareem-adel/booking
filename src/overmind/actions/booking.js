@@ -1,3 +1,5 @@
+import firestore from "@react-native-firebase/firestore";
+
 export const setBookModalVisible = async (
   { state, effects, actions },
   visible
@@ -26,6 +28,7 @@ export const submitBooking = async ({ state, effects, actions }) => {
     .then(
       () => {
         state.bookModal.mode = "success";
+        actions.getBookings(state.user?.email);
       },
       () => {
         state.bookModal.mode = "fail";
@@ -34,5 +37,10 @@ export const submitBooking = async ({ state, effects, actions }) => {
 };
 
 export const getBookings = async ({ state, effects, actions }) => {
-  return await effects.api.getBooking();
+  const retSnapshot = await effects.api.getBookings(state.user?.email);
+  var ret = [];
+  retSnapshot.forEach((documentSnapshot) => {
+    ret.push({ ...documentSnapshot.data() });
+  });
+  state.myBookings = ret;
 };

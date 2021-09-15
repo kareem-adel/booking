@@ -51,4 +51,5 @@ export const state = {
       return state.checkIn !== "" && state.checkOut !== "";
     }),
   },
+  myBookings:[]
 };

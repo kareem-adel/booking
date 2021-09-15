@@ -28,8 +28,8 @@ export default {
   submitBooking: async (email, data) => {
     return firestore().collection(email).add(data);
   },
-  getBookings: async (email, data) => {
-    return firestore().collection(email).get();
+  getBookings: async (email) => {
+    return await firestore().collection(email).get();
   },
 
   login: async (email, password) => {
